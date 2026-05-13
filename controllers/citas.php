@@ -337,6 +337,14 @@ class Citas extends Controller
         // Imprimir el título y los datos del cliente/empresa pasándole el objeto cita
         $pdf->titulo($cita);
 
+        // Dirección
+        $pdf->SetFont('Arial', 'B', 11);
+        $pdf->Cell(0, 10, iconv('UTF-8', 'ISO-8859-1//IGNORE', 'Dirección del evento:'), 0, 1, 'L');
+        $pdf->SetFont('Arial', '', 11);
+        // Imprimimos la dirección real que viene de la base de datos
+        $pdf->Cell(0, 5, iconv('UTF-8', 'ISO-8859-1//IGNORE', $cita->direccion), 0, 1, 'L');
+        $pdf->Ln(10); // Espacio antes de la tabla de conceptos
+
         // Configurar fuente para los datos
         $pdf->SetFont('Arial', '', 11); 
 

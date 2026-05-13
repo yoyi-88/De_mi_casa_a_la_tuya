@@ -8,7 +8,7 @@
                 <div class="form-card-header bg-dark text-white">
                     <h5 class="form-card-title"><i class="bi bi-calendar-plus"></i> Solicitar Experiencia</h5>
                 </div>
-                
+
                 <div class="form-card-body">
 
                     <form action="<?= URL ?>citas/create" method="POST">
@@ -40,12 +40,12 @@
                                 <?php endforeach; ?>
                             </select>
 
-                            
+
                         </div>
 
                         <div class="form-group">
                             <label for="direccion" class="custom-label">DIRECCIÓN</label>
-                            <input type="text" name="direccion" id="direccion" class="form-control" placeholder="Calle Ejemplo 1, Ubrique" required>
+                            <input type="text" name="direccion" id="direccion" class="form-control" value="<?= htmlspecialchars($this->cita->direccion ?? '') ?>" placeholder="Calle Ejemplo 1, Ubrique" required>
                         </div>
 
                         <div class="form-actions border-top-actions mt-4 pt-4">
@@ -63,22 +63,22 @@
 <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         fetch('<?= URL ?>citas/disponibilidad')
             .then(response => response.json())
             .then(diasOcupados => {
                 flatpickr("#calendario", {
-                    locale: "es",           
-                    minDate: "today",       
-                    dateFormat: "Y-m-d",    
+                    locale: "es",
+                    minDate: "today",
+                    dateFormat: "Y-m-d",
                     disable: [
-                        function (date) {
+                        function(date) {
                             let fechaStr = date.getFullYear() + "-" +
                                 String(date.getMonth() + 1).padStart(2, '0') + "-" +
                                 String(date.getDate()).padStart(2, '0');
                             return diasOcupados.includes(fechaStr);
                         },
-                        function (date) {
+                        function(date) {
                             return (date.getDay() === 0 || date.getDay() === 1);
                         }
                     ]
