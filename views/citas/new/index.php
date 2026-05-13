@@ -39,6 +39,13 @@
                                     </option>
                                 <?php endforeach; ?>
                             </select>
+
+                            
+                        </div>
+
+                        <div class="form-group">
+                            <label for="direccion" class="custom-label">DIRECCIÓN</label>
+                            <input type="text" name="direccion" id="direccion" class="form-control" placeholder="Calle Ejemplo 1, Ubrique" required>
                         </div>
 
                         <div class="form-actions border-top-actions mt-4 pt-4">

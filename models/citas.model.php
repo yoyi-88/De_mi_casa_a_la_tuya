@@ -74,8 +74,8 @@ class citasModel extends Model {
     */
     public function create($cita) {
         try {
-            $sql = "INSERT INTO citas (fecha, hora, estado, user_id, menu_id) 
-                    VALUES (:fecha, :hora, 'Pendiente', :user_id, :menu_id)";
+            $sql = "INSERT INTO citas (fecha, hora, estado, user_id, menu_id, direccion) 
+                    VALUES (:fecha, :hora, 'Pendiente', :user_id, :menu_id, :direccion)";
             
             $conn = $this->db->connect();
             $stmt = $conn->prepare($sql);
@@ -84,7 +84,7 @@ class citasModel extends Model {
             $stmt->bindParam(':hora', $cita->hora);
             $stmt->bindParam(':user_id', $cita->user_id, PDO::PARAM_INT);
             $stmt->bindParam(':menu_id', $cita->menu_id, PDO::PARAM_INT);
-
+            $stmt->bindParam(':direccion', $cita->direccion);
             $stmt->execute();
             return $conn->lastInsertId();
 

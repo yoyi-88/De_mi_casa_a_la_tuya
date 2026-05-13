@@ -3,7 +3,7 @@
         'name' => 'terminal04/proyecto_fin_de_grado',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '7717c22be513c3b7a0359232f0218ec865d704c6',
+        'reference' => 'f0f842fa211ca289c1a0bedf0cb6f60c9948765d',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -31,7 +31,7 @@
         'terminal04/proyecto_fin_de_grado' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '7717c22be513c3b7a0359232f0218ec865d704c6',
+            'reference' => 'f0f842fa211ca289c1a0bedf0cb6f60c9948765d',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

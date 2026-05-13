@@ -11,6 +11,7 @@ class class_cita {
     public $estado;
     public $user_id;
     public $menu_id;
+    public $direccion;
 
     // Propiedades extendidas (para mostrar datos de las tablas relacionadas)
     public $cliente_nombre;
@@ -23,7 +24,8 @@ class class_cita {
         $hora = null,
         $estado = 'Pendiente',
         $user_id = null,
-        $menu_id = null
+        $menu_id = null,
+        $direccion = null
     ) {
         $this->id = $id;
         $this->fecha = $fecha;
@@ -31,6 +33,7 @@ class class_cita {
         $this->estado = $estado;
         $this->user_id = $user_id;
         $this->menu_id = $menu_id;
+        $this->direccion = $direccion;
     }
 }
 ?>

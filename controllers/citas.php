@@ -104,11 +104,12 @@ class Citas extends Controller
         $fecha = $_POST['fecha'] ?? '';
         $hora = $_POST['hora'] ?? '';
         $menu_id = filter_var($_POST['menu_id'] ?? '', FILTER_SANITIZE_NUMBER_INT);
+        $direccion = filter_var($_POST['direccion'] ?? '', FILTER_SANITIZE_STRING);
         
         // El usuario es el que está logueado
         $user_id = $_SESSION['user_id'];
 
-        $cita = new class_cita(null, $fecha, $hora, 'Pendiente', $user_id, $menu_id);
+        $cita = new class_cita(null, $fecha, $hora, 'Pendiente', $user_id, $menu_id, $direccion);
 
         // Validaciones
         $errores = [];
@@ -130,6 +131,13 @@ class Citas extends Controller
             $errores['menu_id'] = 'Debes seleccionar un menú.';
         } elseif (!filter_var($menu_id, FILTER_VALIDATE_INT)) {
             $errores['menu_id'] = 'Formato de menú no válido.';
+        }
+
+        // Validar dirección
+        if (empty($direccion)) {
+            $errores['direccion'] = 'La dirección es obligatoria.';
+        } elseif (strlen($direccion) < 5 || strlen($direccion) > 100) {
+            $errores['direccion'] = 'La dirección debe tener entre 5 y 100 caracteres.';
         }
 
         if (!empty($errores)) {

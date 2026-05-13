@@ -16,6 +16,7 @@
                             <th class="ps-4 py-3 text-muted small fw-bold">FECHA</th>
                             <th class="py-3 text-muted small fw-bold">HORA</th>
                             <th class="py-3 text-muted small fw-bold">MENÚ</th>
+                            <th class="py-3 text-muted small fw-bold">DIRECCIÓN</th>
                             <?php if ($_SESSION['role_id'] == 1): ?>
                                 <th class="py-3 text-muted small fw-bold">CLIENTE</th>
                             <?php endif; ?>
@@ -34,6 +35,9 @@
                                 </td>
                                 <td>
                                     <?= $cita->menu_nombre ?>
+                                </td>
+                                <td>
+                                    <?= $cita->direccion ?>
                                 </td>
 
                                 <?php if ($_SESSION['role_id'] == 1): ?>
