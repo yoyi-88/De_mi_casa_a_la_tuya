@@ -49,9 +49,9 @@
             <?php if (isset($this->mensaje)): ?>
                 Toastify({
                     text: "<?= $this->mensaje ?>",
-                    duration: 4000,
+                    duration: 2500,
                     gravity: "top", 
-                    position: "center", 
+                    position: "right", 
                     stopOnFocus: true,
                     style: {
                         background: "linear-gradient(to right, #0F4C75, #3282B8)", 
