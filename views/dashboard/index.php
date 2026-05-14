@@ -71,55 +71,58 @@
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     
+    // Inyección de datos desde el servidor hacia variables de JavaScript
     const datosEstado = <?= json_encode($this->statsEstado) ?>;
     const datosIngresos = <?= json_encode($this->statsIngresos) ?>;
 
-    // --- GRÁFICO DE ESTADOS (DONUT) ---
+    // Gráfico circular
     const ctxEstados = document.getElementById('graficoEstados').getContext('2d');
+
+    // Procesamiento de datos: creamos arrays separados para etiquetas y valores
     const labelsEstados = datosEstado.map(item => item.estado);
     const dataEstados = datosEstado.map(item => item.total);
 
-    // Mapeo de colores corporativos según el estado para que coincida con tu diseño
+    // Mapeo de colores
     const colorMap = {
-        'Pendiente': '#F09A54',  // Naranja tostado (Warning)
-        'Confirmada': '#7A8B70', // Verde alga (Success)
-        'Cancelada': '#A83F39',  // Rojo guinda (Danger)
-        'Finalizada': '#112331'  // Azul oscuro marino (Dark)
+        'Pendiente': '#F09A54',  
+        'Confirmada': '#7A8B70', 
+        'Cancelada': '#A83F39', 
+        'Finalizada': '#112331'  
     };
     
     // Asignamos colores a cada etiqueta dinámicamente
     const bgColorsEstados = labelsEstados.map(estado => colorMap[estado] || '#0dcaf0');
 
+    // Inicialización del objeto Chart para el gráfico de rosca
     new Chart(ctxEstados, {
-        type: 'doughnut',
+        type: 'doughnut', // Define la forma del gráfico
         data: {
             labels: labelsEstados,
             datasets: [{
                 data: dataEstados,
                 backgroundColor: bgColorsEstados,
                 borderWidth: 0,
-                hoverOffset: 4
+                hoverOffset: 4 // Efecto de expansión al pasar el ratón
             }]
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
+            maintainAspectRatio: false, // Permite que el gráfico llene su contenedor
             plugins: { 
-                legend: { 
-                    position: 'bottom',
-                    labels: { font: { family: "'Lato', sans-serif" } }
-                } 
+                legend: { position: 'bottom' } 
             },
-            cutout: '70%' // Hace el agujero central más elegante
+            cutout: '70%' // Grosor del anillo (70% de hueco central)
         }
     });
 
-    // --- GRÁFICO DE INGRESOS (BARRAS) ---
+    // Grafico de ingresos (Barras)
     const ctxIngresos = document.getElementById('graficoIngresos').getContext('2d');
     const nombresMeses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+    // Transformamos el número de mes (1-12) en su nombre abreviado
     const labelsIngresos = datosIngresos.map(item => nombresMeses[item.mes - 1]);
     const dataIngresos = datosIngresos.map(item => item.total_ingresos);
 
+    // Inicialización del objeto Chart para el gráfico de barras
     new Chart(ctxIngresos, {
         type: 'bar',
         data: {
@@ -127,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function() {
             datasets: [{
                 label: 'Ingresos (€)',
                 data: dataIngresos,
-                backgroundColor: '#0F4C75', // Tu color $primary dorado
+                backgroundColor: '#0F4C75', 
                 borderRadius: 6,            // Bordes superiores redondeados
                 borderSkipped: false,
                 barPercentage: 0.6          // Barras más estilizadas
@@ -141,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function() {
             },
             scales: {
                 y: { 
-                    beginAtZero: true,
+                    beginAtZero: true, // El eje Y siempre empieza en 0 para no distorsionar la percepción
                     grid: { borderDash: [5, 5] }, // Líneas de fondo punteadas (más limpio)
                     ticks: { font: { family: "'Lato', sans-serif" } }
                 },
