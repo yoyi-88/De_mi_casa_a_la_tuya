@@ -63,21 +63,37 @@
 <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
 
 <script>
+    Aquí tienes el código con comentarios técnicos precisos. He seguido un estilo profesional que explica el "por qué" de cada bloque, lo cual te será muy útil si el tribunal te pregunta por esta parte.
+
+HTML
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
+
+<script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Petición asíncrona al controlador para obtener fechas no disponibles (JSON)
         fetch('<?= URL ?>citas/disponibilidad')
             .then(response => response.json())
             .then(diasOcupados => {
+                
+                // Configuración de la instancia del calendario
                 flatpickr("#calendario", {
-                    locale: "es",
-                    minDate: "today",
-                    dateFormat: "Y-m-d",
+                    locale: "es",           // Idioma español
+                    minDate: "today",       // Impedir reservas en fechas pasadas
+                    dateFormat: "Y-m-d",    // Formato compatible con MySQL (YYYY-MM-DD)
+                    
                     disable: [
+                        // Deshabilitar fechas que ya existen en la base de datos
                         function(date) {
+                            // Formatear fecha del calendario a string 'YYYY-MM-DD'
                             let fechaStr = date.getFullYear() + "-" +
                                 String(date.getMonth() + 1).padStart(2, '0') + "-" +
                                 String(date.getDate()).padStart(2, '0');
+                            
+                            // Comprobar si la fecha actual está en el array de ocupados
                             return diasOcupados.includes(fechaStr);
                         },
+                        // Deshabilitar días específicos (Domingos: 0 y Lunes: 1)
                         function(date) {
                             return (date.getDay() === 0 || date.getDay() === 1);
                         }

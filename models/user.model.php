@@ -159,6 +159,12 @@ class userModel extends Model {
             // Iniciamos transacción
             $conn->beginTransaction();
 
+            // Borrar CITAS del usuario (MyISAM)
+            $sql_citas = "DELETE FROM citas WHERE user_id = :id";
+            $stmt_citas = $conn->prepare($sql_citas);
+            $stmt_citas->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt_citas->execute();
+
             // Eliminar de roles_users primero
             $sql_roles = "DELETE FROM roles_users WHERE user_id = :id";
             $stmt_roles = $conn->prepare($sql_roles);
