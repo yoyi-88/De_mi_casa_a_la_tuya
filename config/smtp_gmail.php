@@ -15,7 +15,7 @@ define('SMTP_PORT', 587);
 define('SMTP_USER', 'yoelito888@gmail.com');
 
 // Contraseña SMTP
-define('SMTP_PASS', 'ihqlrxiplhnaxgte');
+define('SMTP_PASS', 'xxewnuwbgytjsgmo');
 
 
 ?>
