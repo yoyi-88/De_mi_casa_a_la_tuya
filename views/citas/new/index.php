@@ -62,12 +62,6 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
 
-<script>
-    Aquí tienes el código con comentarios técnicos precisos. He seguido un estilo profesional que explica el "por qué" de cada bloque, lo cual te será muy útil si el tribunal te pregunta por esta parte.
-
-HTML
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

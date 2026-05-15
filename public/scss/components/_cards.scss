@@ -17,13 +17,17 @@
     // Cabecera (Contenedor de imagen y precio)
     &-header {
         position: relative;
+        
     }
 
     // Imagen (Sustituye al style en línea)
     &-img {
-        width: 100%;
-        height: 250px;
-        object-fit: cover;
+        max-width: 100%;        
+        max-height: 100%;       
+        width: auto !important; 
+        height: auto !important;
+        object-fit: contain !important; // CLAVE: Muestra la imagen entera sin recortes
+        display: block;
     }
 
     // Etiqueta del precio

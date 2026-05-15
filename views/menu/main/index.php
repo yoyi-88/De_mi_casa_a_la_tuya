@@ -10,7 +10,7 @@
 
 <?php while ($menu = $this->menus->fetch(PDO::FETCH_OBJ)): ?>
             <div class="col">
-                <div class="card menu-card h-100">
+                <div class="menu-card card w-100 h-100 shadow-sm">
 
                     <div class="menu-card-header">
                         <img src="<?= URL ?>public/images/menus/<?= $menu->imagen ?? 'default.jpg' ?>" 

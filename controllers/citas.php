@@ -119,7 +119,12 @@ class Citas extends Controller
             $errores['fecha'] = 'La fecha es obligatoria.';
         } elseif (strtotime($fecha) < strtotime(date('Y-m-d'))) {
             $errores['fecha'] = 'No puedes reservar en una fecha pasada.';
+        // Comprobamos si la fecha ya existe en la tabla de citas del modelo
+        } elseif ($this->model->comprobar_disponibilidad($fecha)) {
+            $errores['fecha'] = 'Lo sentimos, esta fecha ya ha sido reservada por otro cliente.';
         }
+        
+        
 
         // Validar hora (ejemplo simple, horario laboral)
         if (empty($hora)) {
